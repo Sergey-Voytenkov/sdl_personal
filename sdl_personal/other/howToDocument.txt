@@ -1,0 +1,21 @@
+To add documentation to a function you have to do
+
+/**TEXT*/
+
+or
+
+/**
+*TEXT
+*/
+
+Important thing is that there are to ** in the biggining
+
+
+
+Multiple lines are simular but can only be preformed in the second method
+
+/**
+*TEXT1
+* "space"
+*TEXT2
+*/
