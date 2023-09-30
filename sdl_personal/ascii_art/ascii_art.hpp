@@ -1,9 +1,9 @@
 #ifndef ASCII_ART_HPP
 #define ASCII_ART_HPP
 
-#import "libraries.hpp"
-#include "texture_manager.hpp"
-#include "renderer.hpp"
+#import "../other/libraries.hpp"
+#include "../texture_manager/texture_manager.hpp"
+#include "../game/renderer/renderer.hpp"
 
 
 string font = "assets/CouriorPrime-Regular.ttf";

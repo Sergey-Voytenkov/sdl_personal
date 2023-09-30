@@ -13,7 +13,7 @@
 #include <SDL2_image/SDL_image.h>
 
 // Customs
-#include "vector2.hpp"
+#include "../vectors/vector2.hpp"
 
 using namespace std;
 

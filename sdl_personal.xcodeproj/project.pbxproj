@@ -21,7 +21,7 @@
 		A59062A12AC8932F0058A1BA /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590627A2AC8932F0058A1BA /* object.cpp */; };
 		A59062A22AC8932F0058A1BA /* loader_params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590627D2AC8932F0058A1BA /* loader_params.cpp */; };
 		A59062A32AC8932F0058A1BA /* sdl_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590627E2AC8932F0058A1BA /* sdl_object.cpp */; };
-		A59062A42AC8932F0058A1BA /* room_instance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062802AC8932F0058A1BA /* room_instance.cpp */; };
+		A59062A42AC8932F0058A1BA /* maze_room.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062802AC8932F0058A1BA /* maze_room.cpp */; };
 		A59062A52AC8932F0058A1BA /* texture_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062832AC8932F0058A1BA /* texture_manager.cpp */; };
 		A59062A62AC8932F0058A1BA /* maze.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062862AC8932F0058A1BA /* maze.cpp */; };
 		A59062A72AC8932F0058A1BA /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590628A2AC8932F0058A1BA /* player.cpp */; };
@@ -76,8 +76,8 @@
 		A590627C2AC8932F0058A1BA /* object.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = object.hpp; sourceTree = "<group>"; };
 		A590627D2AC8932F0058A1BA /* loader_params.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = loader_params.cpp; sourceTree = "<group>"; };
 		A590627E2AC8932F0058A1BA /* sdl_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdl_object.cpp; sourceTree = "<group>"; };
-		A59062802AC8932F0058A1BA /* room_instance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = room_instance.cpp; sourceTree = "<group>"; };
-		A59062812AC8932F0058A1BA /* room_instance.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = room_instance.hpp; sourceTree = "<group>"; };
+		A59062802AC8932F0058A1BA /* maze_room.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maze_room.cpp; sourceTree = "<group>"; };
+		A59062812AC8932F0058A1BA /* maze_room.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = maze_room.hpp; sourceTree = "<group>"; };
 		A59062832AC8932F0058A1BA /* texture_manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture_manager.cpp; sourceTree = "<group>"; };
 		A59062842AC8932F0058A1BA /* texture_manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = texture_manager.hpp; sourceTree = "<group>"; };
 		A59062862AC8932F0058A1BA /* maze.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = maze.cpp; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 				A583DF582AA377C700D4FEC1 /* sdl_personal.entitlements */,
 				A59062912AC8932F0058A1BA /* ascii_art */,
 				A59062622AC8932F0058A1BA /* game */,
-				A590626F2AC8932F0058A1BA /* input */,
 				A59062852AC8932F0058A1BA /* maze */,
+				A590626F2AC8932F0058A1BA /* input */,
 				A59062742AC8932F0058A1BA /* objects */,
 				A59062682AC8932F0058A1BA /* other */,
 				A59062822AC8932F0058A1BA /* texture_manager */,
@@ -246,8 +246,8 @@
 		A590627F2AC8932F0058A1BA /* maze_objects */ = {
 			isa = PBXGroup;
 			children = (
-				A59062802AC8932F0058A1BA /* room_instance.cpp */,
-				A59062812AC8932F0058A1BA /* room_instance.hpp */,
+				A59062802AC8932F0058A1BA /* maze_room.cpp */,
+				A59062812AC8932F0058A1BA /* maze_room.hpp */,
 			);
 			path = maze_objects;
 			sourceTree = "<group>";
@@ -264,9 +264,9 @@
 		A59062852AC8932F0058A1BA /* maze */ = {
 			isa = PBXGroup;
 			children = (
+				A59062882AC8932F0058A1BA /* files */,
 				A59062862AC8932F0058A1BA /* maze.cpp */,
 				A59062872AC8932F0058A1BA /* maze.hpp */,
-				A59062882AC8932F0058A1BA /* files */,
 			);
 			path = maze;
 			sourceTree = "<group>";
@@ -274,14 +274,14 @@
 		A59062882AC8932F0058A1BA /* files */ = {
 			isa = PBXGroup;
 			children = (
-				A59062892AC8932F0058A1BA /* engine.hpp */,
-				A590628A2AC8932F0058A1BA /* player.cpp */,
-				A590628B2AC8932F0058A1BA /* room.hpp */,
-				A590628C2AC8932F0058A1BA /* mazeBuilder.hpp */,
-				A590628D2AC8932F0058A1BA /* room.cpp */,
-				A590628E2AC8932F0058A1BA /* mazeBuilder.cpp */,
-				A590628F2AC8932F0058A1BA /* engine.cpp */,
 				A59062902AC8932F0058A1BA /* player.hpp */,
+				A590628A2AC8932F0058A1BA /* player.cpp */,
+				A590628C2AC8932F0058A1BA /* mazeBuilder.hpp */,
+				A590628E2AC8932F0058A1BA /* mazeBuilder.cpp */,
+				A590628B2AC8932F0058A1BA /* room.hpp */,
+				A590628D2AC8932F0058A1BA /* room.cpp */,
+				A59062892AC8932F0058A1BA /* engine.hpp */,
+				A590628F2AC8932F0058A1BA /* engine.cpp */,
 			);
 			path = files;
 			sourceTree = "<group>";
@@ -379,7 +379,7 @@
 				A59062A32AC8932F0058A1BA /* sdl_object.cpp in Sources */,
 				A590629F2AC8932F0058A1BA /* arrow_input.cpp in Sources */,
 				A590629D2AC8932F0058A1BA /* keyboard_input.cpp in Sources */,
-				A59062A42AC8932F0058A1BA /* room_instance.cpp in Sources */,
+				A59062A42AC8932F0058A1BA /* maze_room.cpp in Sources */,
 				A59062A52AC8932F0058A1BA /* texture_manager.cpp in Sources */,
 				A590629B2AC8932F0058A1BA /* game.cpp in Sources */,
 				A59062AA2AC8932F0058A1BA /* engine.cpp in Sources */,

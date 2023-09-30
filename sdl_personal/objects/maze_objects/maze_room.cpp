@@ -1,4 +1,4 @@
-#include "room_instance.hpp"
+#include "maze_room.hpp"
 
 void MazeRoom::updateCords(float x, float y) {
     m_position.setX(x);

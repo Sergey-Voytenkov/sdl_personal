@@ -1,11 +1,11 @@
 #ifndef MAZE_HPP
 #define MAZE_HPP
 
-#include "libraries.hpp"
-#include "mazeBuilder.hpp"
-#include "player.hpp"
-#include "room_Instance.hpp"
-#include "renderer.hpp"
+#include "../other/libraries.hpp"
+#include "files/mazeBuilder.hpp"
+#include "files/player.hpp"
+#include "../objects/maze_objects/maze_room.hpp"
+#include "../game/renderer/renderer.hpp"
 
 char MAZE_MAP_FILE_NAME[] = "maze.txt";
 const int MAZE_ROOM_PADDING = 100;

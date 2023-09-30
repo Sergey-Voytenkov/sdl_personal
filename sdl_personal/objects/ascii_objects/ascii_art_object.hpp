@@ -1,8 +1,8 @@
 #ifndef ASCII_ART_OBJECT_HPP
 #define ASCII_ART_OBJECT_HPP
 
-#include "libraries.hpp"
-#include "sdl_object.hpp"
+#include "../../other/libraries.hpp"
+#include "../virtual/sdl_object.hpp"
 //#include "ascii_art.hpp"
 
 class AsciiArtObject: public SDLObject {
