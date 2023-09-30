@@ -3,6 +3,7 @@
 
 #import "libraries.hpp"
 #include "texture_manager.hpp"
+#include "renderer.hpp"
 
 
 string font = "assets/CouriorPrime-Regular.ttf";

@@ -18,7 +18,7 @@ void SDLObject::draw() {
                                       (int) m_position.getX(),
                                       (int) m_position.getY(),
                                       m_width, m_height,
-                                      Game::Instance()->getRenderer(),
+                                      Renderer::Instance()->getRenderer(),
                                       SDL_FLIP_NONE);
 }
 

@@ -3,15 +3,14 @@
 
 #include "libraries.hpp"
 #include "sdl_object.hpp"
-#include "ascii_art.hpp"
+//#include "ascii_art.hpp"
 
 class AsciiArtObject: public SDLObject {
 public:
-    AsciiArtObject(const LoaderParams * pParams);
+    AsciiArtObject(const LoaderParams * pParams) : SDLObject(pParams) {}
     ~AsciiArtObject() {}
     
     void draw();
-    void handle_input();
     void update();
     
     void clean();

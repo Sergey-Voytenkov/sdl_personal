@@ -90,7 +90,7 @@ SDL_Texture * AsciiArt::create_ascii_art() {
     int bbp = pSurface->format->BytesPerPixel;
     int fbbp = pFont->format->BytesPerPixel;
     
-    for (::map<pair<int, int>, Uint8>::iterator iterator = m_averageMap.begin(); iterator != m_averageMap.end(); iterator++) {
+    for (map<pair<int, int>, Uint8>::iterator iterator = m_averageMap.begin(); iterator != m_averageMap.end(); iterator++) {
         x = iterator->first.first;
         y = iterator->first.second;
         color = iterator->second;
@@ -113,7 +113,7 @@ SDL_Texture * AsciiArt::create_ascii_art() {
     
     SDL_UnlockSurface(pSurface);
     
-    SDL_Texture * pTexture = SDL_CreateTextureFromSurface(TextureManager::Instance()->get_renderer(), pSurface);
+    SDL_Texture * pTexture = SDL_CreateTextureFromSurface(Renderer::Instance()->getRenderer(), pSurface);
     if (!pTexture) {
         cout << "Failed to create ascii art texture. " << SDL_GetError() << endl;
         

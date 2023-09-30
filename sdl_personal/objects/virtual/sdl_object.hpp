@@ -4,7 +4,9 @@
 #include "libraries.hpp"
 #include "loader_params.hpp"
 #include "object.hpp"
-#include "game.hpp"
+#include "renderer.hpp"
+#include "texture_manager.hpp"
+
 
 class SDLObject: public Object {
 public:

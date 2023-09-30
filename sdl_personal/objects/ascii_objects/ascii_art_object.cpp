@@ -3,9 +3,6 @@ void AsciiArtObject::draw() {
     SDLObject::draw();
 }
 
-void AsciiArtObject::handle_input() {
-    
-}
 
 void AsciiArtObject::update() {
     
