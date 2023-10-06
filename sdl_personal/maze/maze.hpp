@@ -4,7 +4,6 @@
 #include "../other/libraries.hpp"
 #include "files/mazeBuilder.hpp"
 #include "files/player.hpp"
-#include "../objects/maze_objects/maze_room.hpp"
 #include "../game/renderer/renderer.hpp"
 
 char MAZE_MAP_FILE_NAME[] = "maze.txt";
@@ -12,18 +11,12 @@ const int MAZE_ROOM_PADDING = 100;
 const int roomWidth = 50;
 const int roomHeight = 50;
 
-enum possibleDirs {
-    north,
-    south,
-    east,
-    west
-};
 
 class Maze {
 public:
     static Maze * Instance();
     Maze * update(int dir);
-    Room * getMaze() { return m_pMazeBuilder->rooms; }
+    std::vector<MazeRoom*> * getMaze() { return m_pMazeBuilder->&m_pRooms; }
     
 private:
     Maze() {
