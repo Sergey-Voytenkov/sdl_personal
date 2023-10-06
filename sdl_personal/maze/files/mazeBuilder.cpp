@@ -7,7 +7,7 @@ using namespace std;
 
 MazeBuilder::MazeBuilder(char * mazeFileName, int roomWidth, int roomHeight, string identifier) {
     roomCount = readRoomCount(mazeFileName);
-    m_pRooms = *buildRooms(mazeFileName, roomCount, roomWidth, roomHeight, identifier);
+    m_pRooms = buildRooms(mazeFileName, roomCount, roomWidth, roomHeight, identifier);
 }
 
 
@@ -25,7 +25,8 @@ std::vector<MazeRoom*>* MazeBuilder::buildRooms(char * mazeFileName, int roomCou
         char ** ppSnippets = split(buf);
         parseRoomData(pRooms->at(i), ppSnippets);
         
-        for (int j = 0; j < 5; j++) free(ppSnippets[j]);
+        //+1 for roomId, everything else for directions
+        for (int j = 0; j < Dirs::sizeOfDirs+1; j++) free(ppSnippets[j]);
         free(ppSnippets);
         
         cout << "Built room #" << i << " with ID " << pRooms->at(i)->getId() <<endl;
@@ -44,6 +45,12 @@ std::vector<MazeRoom*>* MazeBuilder::prebuildRooms(int sizeCount, int width, int
     std::vector<MazeRoom*>* pRooms = new std::vector<MazeRoom*>;
     for (int i = 0; i < sizeCount; i++)
         pRooms->push_back(new MazeRoom(new LoaderParams(0, 0, width, height, identifier)));
+    
+    for (int i = 0; i < sizeCount; i++) {
+        pRooms->at(i)->setDimensions(width, height);
+        pRooms->at(i)->setRoomCords(0, 0);
+    }
+    
     return pRooms;
 }
 
@@ -70,10 +77,10 @@ int MazeBuilder::readRoomCount(char *mazeFileName) {
 }
 
 void MazeBuilder::parseRoomData(MazeRoom* pRoom, char ** pSnippets) {
-    int ids[5] = {0,0,0,0,0};
+    int ids[Dirs::sizeOfDirs] = {0};
     
     // Calculates room IDs
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < Dirs::sizeOfDirs+1; i++)
         for (int j = 0; j < strlen(pSnippets[i]); j++)
             ids[i] = (ids[i]*10) + (pSnippets[i][j]-48);
     
@@ -88,10 +95,10 @@ void MazeBuilder::parseRoomData(MazeRoom* pRoom, char ** pSnippets) {
 };
 
 char ** MazeBuilder::split(char * data) {
-    char ** snippets = (char**)malloc(sizeof(char*)*5);
+    char ** snippets = (char**)malloc(sizeof(char*)*(Dirs::sizeOfDirs+1));
     int i = 0;
     int s = 0;
-    while (s < 5) {
+    while (s < Dirs::sizeOfDirs+1) {
         while (i < strlen(data)) {
             int j = i;
             while (data[j] != ',' && data[j] != '\n') j++;
@@ -128,7 +135,7 @@ void MazeBuilder::searchAndAssignDirections(std::vector<MazeRoom*>* pRooms, int 
 }
 
 MazeRoom* MazeBuilder::findRoom(int roomNum, std::vector<MazeRoom*>* pRooms, int roomCount) {
-    for (int i = 0; i < roomCount; ++i)
+    for (int i = 0; i < roomCount || i < pRooms->size(); ++i)
         if (pRooms->at(i)->getId() == roomNum)
             return pRooms->at(i);
     

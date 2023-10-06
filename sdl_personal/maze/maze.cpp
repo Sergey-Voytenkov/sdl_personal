@@ -7,72 +7,48 @@ Maze * Maze::Instance() {
     return m_pInstance;
 }
 
-bool Maze::build(Room* rooms) {
-    if (rooms == nullptr) return false;
+bool Maze::build() {
+    m_pMazeBuilder = new MazeBuilder(static_cast<char*>(MAZE_MAP_FILE_NAME), roomWidth, roomHeight, roomTexIdentifier);
     
-    // Create rooms with default values
-    createPlainMazeRooms(rooms);
+    roomCount = m_pMazeBuilder->getRoomCount();
     
-    // Calculates their initial positions around first room
-    calculateInitialPositions(&rooms[0]);
-    
+    calculateInitialPositions(m_pMazeBuilder->m_pRooms);
     
     return true;
 }
 
-void Maze::createPlainMazeRooms(Room * rooms) {
-    Room* pRoom;
-    MazeRoom* pMazeRoom;
-    
-    for (int i = 0; i < roomCount; i++) {
-        pRoom = &rooms[i];
-        pMazeRoom = new MazeRoom(new LoaderParams(0, 0, roomWidth, roomHeight, "room"), pRoom->x, pRoom->y, pRoom->id);
-        pMazeRoom->initialPositionCalculated = false;
-        
-        m_pMazeRooms->insert(std::pair<int, MazeRoom*>(pRoom->id, pMazeRoom));
-    }
-}
 
-void Maze::calculateInitialPositions(Room* room) {
+void Maze::calculateInitialPositions(std::vector<MazeRoom*>* pRooms) {
     //Calculate center of the view to pass on
     std::pair<int, int> screenSize = Renderer::Instance()->getScreenSizeReference();
-    int x = screenSize.first - (1/roomWidth);
-    int y = screenSize.second - (1/roomHeight);
+    int x = (screenSize.first/2) - (roomWidth/2);
+    int y = (screenSize.second/2) - (roomHeight/2);
     
-    recursiveCalc(x, y, room);
+    recursiveCalc(x, y, pRooms->at(0));
 }
 
-bool Maze::recursiveCalc(int curX, int curY, Room* room) {
-    findMazeRoom(room->id)->updateCords(curX, curY);
+bool Maze::recursiveCalc(int curX, int curY, MazeRoom* pRoom) {
+    pRoom->updateCords(curX, curY);
     
-    if (!wasChecked(room->north->id)) {
-        findMazeRoom(room->id)->initialPositionCalculated = true;
-        recursiveCalc(curX, curY+MAZE_ROOM_PADDING, room->north);
+    if (!pRoom->getRoom(Dirs::north)->initialPositionCalculated) {
+        pRoom->initialPositionCalculated = true;
+        recursiveCalc(curX, curY+MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::north));
     }
-    if (!wasChecked(room->south->id)) {
-        findMazeRoom(room->id)->initialPositionCalculated = true;
-        recursiveCalc(curX, curY+MAZE_ROOM_PADDING, room->south);
+    
+    if (!pRoom->getRoom(Dirs::south)->initialPositionCalculated) {
+        pRoom->initialPositionCalculated = true;
+        recursiveCalc(curX, curY-MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::south));
     }
-    if (!wasChecked(room->east->id)) {
-        findMazeRoom(room->id)->initialPositionCalculated = true;
-        recursiveCalc(curX-MAZE_ROOM_PADDING, curY, room->east);
+    
+    if (!pRoom->getRoom(Dirs::east)->initialPositionCalculated) {
+        pRoom->initialPositionCalculated = true;
+        recursiveCalc(curX+MAZE_ROOM_PADDING, curY, pRoom->getRoom(Dirs::east));
     }
-    if (!wasChecked(room->west->id)) {
-        findMazeRoom(room->id)->initialPositionCalculated = true;
-        recursiveCalc(curX+MAZE_ROOM_PADDING, curY, room->west);
+    
+    if (!pRoom->getRoom(Dirs::west)->initialPositionCalculated) {
+        pRoom->initialPositionCalculated = true;
+        recursiveCalc(curX-MAZE_ROOM_PADDING, curY, pRoom->getRoom(Dirs::west));
     }
     
     return true;
-}
-
-MazeRoom * Maze::findMazeRoom(int roomId) {
-    if (m_pMazeRooms->find(roomId) == m_pMazeRooms->end())
-        return NULL;
-    return m_pMazeRooms->find(roomId)->second;
-}
-
-bool Maze::wasChecked(int roomId) {
-    if (findMazeRoom(roomId) == NULL)
-        return true;
-    return findMazeRoom(roomId)->initialPositionCalculated;
 }

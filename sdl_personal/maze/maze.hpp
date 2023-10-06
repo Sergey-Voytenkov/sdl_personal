@@ -10,38 +10,34 @@ char MAZE_MAP_FILE_NAME[] = "maze.txt";
 const int MAZE_ROOM_PADDING = 100;
 const int roomWidth = 50;
 const int roomHeight = 50;
-
+string roomTexIdentifier = "room";
+string playerTexIdentifier = "player";
 
 class Maze {
 public:
     static Maze * Instance();
     Maze * update(int dir);
-    std::vector<MazeRoom*> * getMaze() { return m_pMazeBuilder->&m_pRooms; }
+    std::vector<MazeRoom*> * getMaze() { return m_pMazeBuilder->m_pRooms; }
     
 private:
     Maze() {
-        m_pMazeBuilder = new MazeBuilder(static_cast<char*>(MAZE_MAP_FILE_NAME));
+        build();
         
         roomCount = m_pMazeBuilder->getRoomCount();
-        m_pPlayer = new Player(getMaze());
-        running = false;
+        calculateInitialPositions(m_pMazeBuilder->m_pRooms);
+        m_pPlayer = new Player(getMaze()->at(0), roomTexIdentifier, playerTexIdentifier);
+        running = true;
     }
     ~Maze() {}
     
     static Maze * m_pInstance;
 
     /**Builds the MazeRooms for first access**/
-    bool build(Room*);
+    bool build();
     
-    /**Builds the Rooms but does not calculate the positions**/
-    void createPlainMazeRooms(Room*);
-    bool recursiveCalc(int, int, Room*);
-    /**Helper fucntions for initial creation**/
-    MazeRoom * findMazeRoom(int);
-    bool wasChecked(int);
-    
-    void calculateInitialPositions(Room*);
-    std::map<int, MazeRoom*> * m_pMazeRooms;
+    bool recursiveCalc(int, int, MazeRoom*s);
+    void calculateInitialPositions(std::vector<MazeRoom*>*);
+    std::vector<MazeRoom*> m_pRooms;
     
     int roomCount;
     MazeBuilder * m_pMazeBuilder;

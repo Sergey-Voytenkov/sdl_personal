@@ -1,17 +1,18 @@
 #ifndef player_HPP
 #define player_HPP
 
-#import <iostream>
-#import "player.hpp"
-#import "room.hpp"
-
-using namespace std;
+#include <iostream>
+#include "../../objects/maze_objects/maze_room.hpp"
 class Player {
 public:
-    Room * location;
-    Player(Room *maze);
-    void move(int);
-    int getNewDir(char*);
+    Player(MazeRoom*, string, string);
+    void move(Dirs);
+    
+private:
+    string m_roomIdentifier;
+    string m_playerIdentfier;
+    MazeRoom* m_pRoom;
+    
 };
 
 #endif

@@ -29,6 +29,7 @@
 		A59062A92AC8932F0058A1BA /* mazeBuilder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590628E2AC8932F0058A1BA /* mazeBuilder.cpp */; };
 		A59062AA2AC8932F0058A1BA /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590628F2AC8932F0058A1BA /* engine.cpp */; };
 		A59062AB2AC8932F0058A1BA /* ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062992AC8932F0058A1BA /* ascii_art.cpp */; };
+		A5DD89882AD031A8006B8BF7 /* dirs_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DD89872AD031A8006B8BF7 /* dirs_enum.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +98,8 @@
 		A59062972AC8932F0058A1BA /* CourierPrime-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CourierPrime-Italic.ttf"; sourceTree = "<group>"; };
 		A59062982AC8932F0058A1BA /* CourierPrime-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CourierPrime-Regular.ttf"; sourceTree = "<group>"; };
 		A59062992AC8932F0058A1BA /* ascii_art.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ascii_art.cpp; sourceTree = "<group>"; };
+		A5DD89862AD03114006B8BF7 /* dirs_enum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dirs_enum.hpp; sourceTree = "<group>"; };
+		A5DD89872AD031A8006B8BF7 /* dirs_enum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dirs_enum.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 				A59062692AC8932F0058A1BA /* howToDocument.txt */,
 				A590626A2AC8932F0058A1BA /* how_to_add_doccumentation.rtf */,
 				A590626B2AC8932F0058A1BA /* libraries.hpp */,
+				A5DD89862AD03114006B8BF7 /* dirs_enum.hpp */,
+				A5DD89872AD031A8006B8BF7 /* dirs_enum.cpp */,
 			);
 			path = other;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				A59062A22AC8932F0058A1BA /* loader_params.cpp in Sources */,
 				A59062AB2AC8932F0058A1BA /* ascii_art.cpp in Sources */,
 				A590629E2AC8932F0058A1BA /* input_manager.cpp in Sources */,
+				A5DD89882AD031A8006B8BF7 /* dirs_enum.cpp in Sources */,
 				A59062A92AC8932F0058A1BA /* mazeBuilder.cpp in Sources */,
 				A59062A02AC8932F0058A1BA /* ascii_art_object.cpp in Sources */,
 				A590629C2AC8932F0058A1BA /* vector2.cpp in Sources */,

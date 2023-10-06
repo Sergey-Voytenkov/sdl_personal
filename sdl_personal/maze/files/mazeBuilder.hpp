@@ -13,7 +13,7 @@
 #include "../../objects/maze_objects/maze_room.hpp"
 class MazeBuilder {
 public:
-    std::vector<MazeRoom*> m_pRooms;
+    std::vector<MazeRoom*>* m_pRooms;
     int getRoomCount() { return roomCount; }
     MazeBuilder(char* mazeFileName, int roomWidth, int roomHeight, string textureIdentifier);
     ~MazeBuilder();

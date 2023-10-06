@@ -80,3 +80,7 @@ std::pair<float, float> MazeRoom::getCords() {
     return std::make_pair<float, float>(m_position.getX(),
                                         m_position.getY());
 }
+
+void MazeRoom::updateIdentifier(string identfier) {
+    m_identifier = identfier;
+}

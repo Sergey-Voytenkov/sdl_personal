@@ -2,14 +2,7 @@
 #define ROOM_INSTANCE_HPP
 #include "libraries.hpp"
 #include "sdl_object.hpp"
-
-enum Dirs {
-    north = 0,
-    south = 1,
-    east = 2,
-    west = 3,
-    sizeOfDirs
-};
+#include "../../other/dirs_enum.hpp"
 
 class MazeRoom: public SDLObject{
 public:
@@ -46,6 +39,8 @@ public:
     //GOT TO ADD
     std::pair<int, int> getDimensions();
     void setDimensions(int, int);
+    
+    void updateIdentifier(string);
 
     /**For Room Cords**/
     bool coordinates_calculated;
