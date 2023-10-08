@@ -30,6 +30,7 @@
 		A59062AA2AC8932F0058A1BA /* engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590628F2AC8932F0058A1BA /* engine.cpp */; };
 		A59062AB2AC8932F0058A1BA /* ascii_art.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062992AC8932F0058A1BA /* ascii_art.cpp */; };
 		A5DD89882AD031A8006B8BF7 /* dirs_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DD89872AD031A8006B8BF7 /* dirs_enum.cpp */; };
+		A5DD898B2AD04CE0006B8BF7 /* subscriber_class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A5DD898A2AD04CE0006B8BF7 /* subscriber_class.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -100,6 +101,8 @@
 		A59062992AC8932F0058A1BA /* ascii_art.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ascii_art.cpp; sourceTree = "<group>"; };
 		A5DD89862AD03114006B8BF7 /* dirs_enum.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dirs_enum.hpp; sourceTree = "<group>"; };
 		A5DD89872AD031A8006B8BF7 /* dirs_enum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dirs_enum.cpp; sourceTree = "<group>"; };
+		A5DD89892AD04CD2006B8BF7 /* subscriber_class.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = subscriber_class.hpp; sourceTree = "<group>"; };
+		A5DD898A2AD04CE0006B8BF7 /* subscriber_class.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = subscriber_class.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,7 @@
 		A590626F2AC8932F0058A1BA /* input */ = {
 			isa = PBXGroup;
 			children = (
+				A5DD898C2AD04CE8006B8BF7 /* subscriber_class */,
 				A59062702AC8932F0058A1BA /* input_manager.hpp */,
 				A59062712AC8932F0058A1BA /* keyboard_input.cpp */,
 				A59062722AC8932F0058A1BA /* input_manager.cpp */,
@@ -313,6 +317,15 @@
 			path = assets;
 			sourceTree = "<group>";
 		};
+		A5DD898C2AD04CE8006B8BF7 /* subscriber_class */ = {
+			isa = PBXGroup;
+			children = (
+				A5DD89892AD04CD2006B8BF7 /* subscriber_class.hpp */,
+				A5DD898A2AD04CE0006B8BF7 /* subscriber_class.cpp */,
+			);
+			path = subscriber_class;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -374,6 +387,7 @@
 				A59062AB2AC8932F0058A1BA /* ascii_art.cpp in Sources */,
 				A590629E2AC8932F0058A1BA /* input_manager.cpp in Sources */,
 				A5DD89882AD031A8006B8BF7 /* dirs_enum.cpp in Sources */,
+				A5DD898B2AD04CE0006B8BF7 /* subscriber_class.cpp in Sources */,
 				A59062A92AC8932F0058A1BA /* mazeBuilder.cpp in Sources */,
 				A59062A02AC8932F0058A1BA /* ascii_art_object.cpp in Sources */,
 				A590629C2AC8932F0058A1BA /* vector2.cpp in Sources */,

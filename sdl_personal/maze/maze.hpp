@@ -16,7 +16,7 @@ string playerTexIdentifier = "player";
 class Maze {
 public:
     static Maze * Instance();
-    Maze * update(int dir);
+    void update(Dirs dir);
     std::vector<MazeRoom*> * getMaze() { return m_pMazeBuilder->m_pRooms; }
     
 private:

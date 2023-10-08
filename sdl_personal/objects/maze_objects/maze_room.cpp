@@ -19,6 +19,10 @@ int MazeRoom::getId() {
     return m_id;
 }
 
+int* MazeRoom::getData() {
+    return m_data;
+}
+
 void MazeRoom::setRoom(Dirs dir, MazeRoom* room) {
     switch (dir) {
         case Dirs::north:
@@ -81,6 +85,13 @@ std::pair<float, float> MazeRoom::getCords() {
                                         m_position.getY());
 }
 
+void MazeRoom::setDimensions(int width, int height) {
+    m_width = width;
+    m_height = height;
+}
+
+
 void MazeRoom::updateIdentifier(string identfier) {
     m_identifier = identfier;
 }
+

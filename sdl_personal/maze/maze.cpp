@@ -17,6 +17,17 @@ bool Maze::build() {
     return true;
 }
 
+void update(Dirs dir) {
+    switch (dir) {
+        case Dirs::north:
+            
+            break;
+    }
+}
+
+//void moveMaze(int moveX, int moveY) {
+//    for (int i = 0; i < MazeRoom->)
+//}
 
 void Maze::calculateInitialPositions(std::vector<MazeRoom*>* pRooms) {
     //Calculate center of the view to pass on
