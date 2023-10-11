@@ -17,17 +17,31 @@ bool Maze::build() {
     return true;
 }
 
-void update(Dirs dir) {
+void Maze::update(Dirs dir) {
     switch (dir) {
         case Dirs::north:
-            
+            moveMaze(0, MAZE_ROOM_PADDING);
+            break;
+        case Dirs::south:
+            moveMaze(0, -MAZE_ROOM_PADDING);
+            break;
+        case Dirs::east:
+            moveMaze(MAZE_ROOM_PADDING, 0);
+            break;
+        case Dirs::west:
+            moveMaze(-MAZE_ROOM_PADDING, 0);
+            break;
+        
+        default:
             break;
     }
 }
 
-//void moveMaze(int moveX, int moveY) {
-//    for (int i = 0; i < MazeRoom->)
-//}
+void Maze::moveMaze(int moveX, int moveY) {
+    for (int i = 0; i < m_pRooms.size() || i < roomCount; i++) {
+        m_pRooms[i]->updateAddToCords(moveX, moveY);
+    }
+}
 
 void Maze::calculateInitialPositions(std::vector<MazeRoom*>* pRooms) {
     //Calculate center of the view to pass on

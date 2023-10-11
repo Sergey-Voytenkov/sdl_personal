@@ -80,6 +80,12 @@ void MazeRoom::updateCords(float x, float y) {
     m_position.setY(y);
 }
 
+void MazeRoom::updateAddToCords(float x, float y) {
+    m_position.setX(m_position.getX() + x);
+    m_position.setY(m_position.getY() + y);
+}
+
+
 std::pair<float, float> MazeRoom::getCords() {
     return std::make_pair<float, float>(m_position.getX(),
                                         m_position.getY());

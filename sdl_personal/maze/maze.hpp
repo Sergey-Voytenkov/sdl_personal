@@ -37,6 +37,7 @@ private:
     
     bool recursiveCalc(int, int, MazeRoom*s);
     void calculateInitialPositions(std::vector<MazeRoom*>*);
+    void moveMaze(int, int);
     std::vector<MazeRoom*> m_pRooms;
     
     int roomCount;

@@ -35,6 +35,7 @@ public:
 
     void updateCords(float x, float y);
     std::pair<float, float> getCords();
+    void updateAddToCords(float x, float y);
     
     //GOT TO ADD
     std::pair<int, int> getDimensions();

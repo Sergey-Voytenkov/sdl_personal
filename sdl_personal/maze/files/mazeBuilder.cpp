@@ -95,7 +95,7 @@ void MazeBuilder::parseRoomData(MazeRoom* pRoom, char ** pSnippets) {
 };
 
 char ** MazeBuilder::split(char * data) {
-    char ** snippets = (char**)malloc(sizeof(char*)*(Dirs::sizeOfDirs+1));
+    char ** ppSnipets = (char**)malloc(sizeof(char*)*(Dirs::sizeOfDirs+1));
     int i = 0;
     int s = 0;
     while (s < Dirs::sizeOfDirs+1) {
@@ -103,15 +103,15 @@ char ** MazeBuilder::split(char * data) {
             int j = i;
             while (data[j] != ',' && data[j] != '\n') j++;
             int size = j - i;
-            snippets[s] = (char*)malloc(sizeof(char)*size+1);
+            ppSnipets[s] = (char*)malloc(sizeof(char)*size+1);
             
             int k = 0;
-            while (i < j) snippets[s][k++] = data[i++];
-            snippets[s++][k] = 0;
+            while (i < j) ppSnipets[s][k++] = data[i++];
+            ppSnipets[s++][k] = 0;
             i++;
         }
     }
-    return snippets;
+    return ppSnipets;
 }
 
 void MazeBuilder::searchAndAssignDirections(std::vector<MazeRoom*>* pRooms, int roomId, int roomCount) {
