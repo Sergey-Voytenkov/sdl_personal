@@ -1,5 +1,5 @@
-#ifndef player_HPP
-#define player_HPP
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
 #include <iostream>
 #include "../../objects/maze_objects/maze_room.hpp"

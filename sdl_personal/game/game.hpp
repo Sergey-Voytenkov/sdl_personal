@@ -5,6 +5,8 @@
 #include "texture_manager.hpp"
 #include "renderer.hpp"
 #include "object.hpp"
+#include "../maze/maze.hpp"
+#include "../maze/files/player.hpp"
 //#include "ascii_art_object.hpp"
 
 
@@ -39,6 +41,9 @@ private:
     SDL_Window * m_pWindow;
     SDL_Renderer * m_pRenderer;
    
+    Player * m_pPlayer;
+    Maze * m_pMaze;
+    
     vector<Object*> m_Objects;
     void clean();
  

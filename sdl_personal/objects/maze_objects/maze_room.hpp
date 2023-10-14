@@ -3,7 +3,7 @@
 #include "libraries.hpp"
 #include "sdl_object.hpp"
 #include "../../other/dirs_enum.hpp"
-
+#include <math.h>
 class MazeRoom: public SDLObject{
 public:
     /**Include LoaderParams along with the original X and Y position in the Rooms structure, and roomNumber**/

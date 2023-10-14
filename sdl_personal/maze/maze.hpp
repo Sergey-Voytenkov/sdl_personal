@@ -18,6 +18,7 @@ public:
     static Maze * Instance();
     void update(Dirs dir);
     std::vector<MazeRoom*> * getMaze() { return m_pMazeBuilder->m_pRooms; }
+    Player * getPlayer() { return m_pPlayer; }
     
 private:
     Maze() {

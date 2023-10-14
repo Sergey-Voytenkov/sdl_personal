@@ -29,7 +29,8 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
     m_pRenderer = Renderer::Instance()->getRenderer();
     Renderer::Instance()->setScreenSizeReference(width, height);
     g_bRunning = true;
-    
+    m_pMaze = Maze::Instance();
+    m_pPlayer = m_pMaze->getPlayer();
 //    TextureManager::Instance()->setRenderer(m_pRenderer);
 //    if (!TextureManager::Instance()->load_image_resize("../ascii_art/assets/image.jpeg", "ascii", width, height))
 //        return false;

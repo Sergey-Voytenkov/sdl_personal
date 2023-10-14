@@ -38,7 +38,6 @@ void Player::move(Dirs dir) {
             }
         default:
             return;
-
     };
 };
 
