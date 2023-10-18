@@ -5,13 +5,13 @@
 using namespace std;
 
 
-MazeBuilder::MazeBuilder(char * mazeFileName, int roomWidth, int roomHeight, string identifier) {
+MazeBuilder::MazeBuilder(const char * mazeFileName, int roomWidth, int roomHeight, string identifier) {
     roomCount = readRoomCount(mazeFileName);
     m_pRooms = buildRooms(mazeFileName, roomCount, roomWidth, roomHeight, identifier);
 }
 
 
-std::vector<MazeRoom*>* MazeBuilder::buildRooms(char * mazeFileName, int roomCount, int roomWidth, int roomHeight, string identifier) {
+std::vector<MazeRoom*>* MazeBuilder::buildRooms(const char * mazeFileName, int roomCount, int roomWidth, int roomHeight, string identifier) {
     // String is required for ifstream to function
     string mazeFileNameStr(mazeFileName);
     ifstream mazeFile(mazeFileNameStr);
@@ -54,7 +54,7 @@ std::vector<MazeRoom*>* MazeBuilder::prebuildRooms(int sizeCount, int width, int
     return pRooms;
 }
 
-int MazeBuilder::readRoomCount(char *mazeFileName) {
+int MazeBuilder::readRoomCount(const char *mazeFileName) {
     int roomCount = 0;
     
     //    char strbuf[DATASIZE];

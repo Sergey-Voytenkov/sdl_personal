@@ -8,7 +8,7 @@ Maze * Maze::Instance() {
 }
 
 bool Maze::build() {
-    m_pMazeBuilder = new MazeBuilder(static_cast<char*>(MAZE_MAP_FILE_NAME), roomWidth, roomHeight, roomTexIdentifier);
+    m_pMazeBuilder = new MazeBuilder(MAZE_MAP_FILE_NAME, roomWidth, roomHeight, roomTexIdentifier);
     
     roomCount = m_pMazeBuilder->getRoomCount();
     

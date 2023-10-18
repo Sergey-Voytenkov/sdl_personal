@@ -6,7 +6,6 @@
 #include "renderer.hpp"
 #include "object.hpp"
 #include "../maze/maze.hpp"
-#include "../maze/files/player.hpp"
 //#include "ascii_art_object.hpp"
 
 

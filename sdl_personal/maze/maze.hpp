@@ -6,12 +6,12 @@
 #include "files/player.hpp"
 #include "../game/renderer/renderer.hpp"
 
-char MAZE_MAP_FILE_NAME[] = "maze.txt";
+const char MAZE_MAP_FILE_NAME[] = "maze.txt";
 const int MAZE_ROOM_PADDING = 100;
 const int roomWidth = 50;
 const int roomHeight = 50;
-string roomTexIdentifier = "room";
-string playerTexIdentifier = "player";
+const string roomTexIdentifier = "room";
+const string playerTexIdentifier = "player";
 
 class Maze {
 public:

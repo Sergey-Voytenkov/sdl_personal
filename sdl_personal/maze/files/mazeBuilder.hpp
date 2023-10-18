@@ -15,18 +15,18 @@ class MazeBuilder {
 public:
     std::vector<MazeRoom*>* m_pRooms;
     int getRoomCount() { return roomCount; }
-    MazeBuilder(char* mazeFileName, int roomWidth, int roomHeight, string textureIdentifier);
+    MazeBuilder(const char* mazeFileName, int roomWidth, int roomHeight, string textureIdentifier);
     ~MazeBuilder();
 
 private:
    /* void destroyRooms()*/;
-    std::vector<MazeRoom*>* buildRooms(char*, int, int, int, string);
+    std::vector<MazeRoom*>* buildRooms(const char*, int, int, int, string);
     std::vector<MazeRoom*>* prebuildRooms(int, int, int, string);
     int roomCount;
     
     void parseRoomData(MazeRoom*, char**);
     char** split(char*);
-    int readRoomCount(char*);
+    int readRoomCount(const char*);
     void getDirections(char*, int*);
     void searchAndAssignRoom(MazeRoom*, int);
     void searchAndAssignDirections(std::vector<MazeRoom*>*, int, int);
