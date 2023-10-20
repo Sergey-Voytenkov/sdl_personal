@@ -15,9 +15,8 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
     
     posX = (posX < 0) ? 0 : posX;
     posY = (posY < 0) ? 0 : posY;
-    
-    
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+
+    if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) != 0) {
         cout << "Failed to Initialize -> " << SDL_GetError() << endl;
         return false;
     }

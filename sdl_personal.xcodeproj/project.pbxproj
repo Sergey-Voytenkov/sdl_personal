@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		A583DF162A9A9F8900D4FEC1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A583DF152A9A9F8900D4FEC1 /* main.cpp */; };
-		A583DF552AA3778300D4FEC1 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A583DF212A9A9FCE00D4FEC1 /* SDL2.framework */; };
-		A583DF592AA3785700D4FEC1 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A583DF1D2A9A9FC000D4FEC1 /* SDL2_ttf.framework */; };
-		A583DF5B2AA3785700D4FEC1 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A583DF1E2A9A9FC000D4FEC1 /* SDL2_image.framework */; };
+		A583DF552AA3778300D4FEC1 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A583DF212A9A9FCE00D4FEC1 /* SDL2.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A583DF592AA3785700D4FEC1 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A583DF1D2A9A9FC000D4FEC1 /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A583DF5B2AA3785700D4FEC1 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A583DF1E2A9A9FC000D4FEC1 /* SDL2_image.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A590629A2AC8932F0058A1BA /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062652AC8932F0058A1BA /* renderer.cpp */; };
 		A590629B2AC8932F0058A1BA /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A59062672AC8932F0058A1BA /* game.cpp */; };
 		A590629C2AC8932F0058A1BA /* vector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A590626D2AC8932F0058A1BA /* vector2.cpp */; };
@@ -538,6 +538,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYMROOT = /Users/sergey/Projects/sdl/sdl_personal/build;
 			};
 			name = Debug;
 		};
@@ -556,6 +557,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SYMROOT = /Users/sergey/Projects/sdl/sdl_personal/build;
 			};
 			name = Release;
 		};
