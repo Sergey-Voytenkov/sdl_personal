@@ -1,4 +1,5 @@
 #include "game.hpp"
+
 /**Initializes Game components such as SDL, Image, and so on.**/
 Game * Game::m_pInstance = nullptr;
 

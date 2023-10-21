@@ -298,8 +298,8 @@
 		A59062912AC8932F0058A1BA /* ascii_art */ = {
 			isa = PBXGroup;
 			children = (
-				A59062922AC8932F0058A1BA /* ascii_art.hpp */,
 				A59062932AC8932F0058A1BA /* assets */,
+				A59062922AC8932F0058A1BA /* ascii_art.hpp */,
 				A59062992AC8932F0058A1BA /* ascii_art.cpp */,
 			);
 			path = ascii_art;

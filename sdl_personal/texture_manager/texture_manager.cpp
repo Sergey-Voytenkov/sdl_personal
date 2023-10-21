@@ -151,21 +151,23 @@ void TextureManager::drawFrame(string id, int x, int y, int width, int height, i
 };
 
 void TextureManager::clear() {
-    map<string, SDL_Texture*>::iterator iterator = m_textureMap.begin();
-    while (iterator != m_textureMap.end()) {
-        SDL_DestroyTexture(iterator->second);
-        m_textureMap.erase(iterator);
-        iterator = m_textureMap.begin();
+    map<string, SDL_Surface*>::iterator iterator1 = m_surfaceMap.begin();
+    while (iterator1 != m_surfaceMap.end()) {
+        SDL_FreeSurface(iterator1->second);
+        m_surfaceMap.erase(iterator1);
+        iterator1 = m_surfaceMap.begin();
+    }
+    delete &m_surfaceMap;
+    
+    map<string, SDL_Texture*>::iterator iterator2 = m_textureMap.begin();
+    while (iterator2 != m_textureMap.end()) {
+        SDL_DestroyTexture(iterator2->second);
+        m_textureMap.erase(iterator2);
+        iterator2 = m_textureMap.begin();
     }
     delete &m_textureMap;
     
-    map<string, SDL_Surface*>::iterator iterator2 = m_surfaceMap.begin();
-    while (iterator2 != m_surfaceMap.end()) {
-        SDL_FreeSurface(iterator2->second);
-        m_surfaceMap.erase(iterator2);
-        iterator2 = m_surfaceMap.begin();
-    }
-    delete &m_surfaceMap;
+    
 }
 
 
