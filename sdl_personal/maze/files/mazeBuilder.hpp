@@ -9,7 +9,7 @@
 #include <cstring>
 //#include <algorithm>
 
-#include "SDL2_image/SDL_image.h"
+#include "SDL2/SDL_image.h"
 #include "../../objects/maze_objects/maze_room.hpp"
 class MazeBuilder {
 public:
