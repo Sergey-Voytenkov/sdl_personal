@@ -1,7 +1,7 @@
 #ifndef ROOM_INSTANCE_HPP
 #define ROOM_INSTANCE_HPP
-#include "libraries.hpp"
-#include "sdl_object.hpp"
+#include "../../other/libraries.hpp"
+#include "../virtual/sdl_object.hpp"
 #include "../../other/dirs_enum.hpp"
 #include <math.h>
 class MazeRoom: public SDLObject{
@@ -49,7 +49,7 @@ public:
     
 private:
     int m_id;
-    int m_data[Dirs::sizeOfDirs];
+    int m_data[::sizeOfDirs];
     MazeRoom *m_pNorth, *m_pSouth, *m_pEast, *m_pWest;
     int m_roomX, m_roomY;
 };

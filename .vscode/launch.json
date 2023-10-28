@@ -6,7 +6,7 @@
     "configurations": [],
     "name": "C++ Launch",
     "type": "cppdbg",
-    "program": "${workspaceFolder}/${fileBasenameNoExtension}",
+    "program": "${workspaceFolder}/${fileBasename}",
     "externalConsole": false,
     "environment": [
         {"LD_LIBRARY_PATH": "/opt/homebrew/Cellar/sdl2/2.28.4/lib/"},

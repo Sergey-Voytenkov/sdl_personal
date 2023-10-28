@@ -1,7 +1,7 @@
 #ifndef LOADER_PARAMS_HPP
 #define LOADER_PARAMS_HPP
 
-#include "libraries.hpp"
+#include "../../other/libraries.hpp"
 
 class LoaderParams {
 public:

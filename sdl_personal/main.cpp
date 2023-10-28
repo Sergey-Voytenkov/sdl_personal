@@ -22,7 +22,6 @@ int main(int argc, const char * argv[]) {
         game->render();
     }
       
-    
     cout << "Closing..." << endl;
     
     delete game;

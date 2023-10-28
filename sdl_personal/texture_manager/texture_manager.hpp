@@ -3,6 +3,7 @@
 
 #include "libraries.hpp"
 
+
 class TextureManager {
 public:
     static TextureManager * Instance() {
@@ -53,11 +54,13 @@ public:
     }
     
 private:
-    TextureManager() {}
+    TextureManager() {
+        m_pMainRenderer = nullptr;
+    }
     ~TextureManager() { clear(); }
     
     static TextureManager * m_pInstance;
-    SDL_Renderer * m_pMainRenderer = nullptr;
+    SDL_Renderer * m_pMainRenderer;
     void clear();
     
     map<string, SDL_Texture*> m_textureMap;

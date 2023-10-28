@@ -1,8 +1,9 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "../other/libraries.hpp"
 #include "../texture_manager/texture_manager.hpp"
+#include "../other/libraries.hpp"
+
 #include "renderer/renderer.hpp"
 #include "../objects/virtual/object.hpp"
 #include "../maze/maze.hpp"
@@ -17,7 +18,9 @@ public:
         m_pInstance = nullptr;
         g_bRunning = false;
     }
-    ~Game() { } //clean(); }
+    ~Game() { 
+        clean();
+     }
     
     static Game * Instance();
 

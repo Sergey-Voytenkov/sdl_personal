@@ -1,11 +1,11 @@
 #ifndef SDL_OBJECT_HPP
 #define SDL_OBJECT_HPP
 
-#include "libraries.hpp"
+#include "../../other/libraries.hpp"
 #include "loader_params.hpp"
 #include "object.hpp"
-#include "renderer.hpp"
-#include "texture_manager.hpp"
+#include "../../game/renderer/renderer.hpp"
+#include "../../texture_manager/texture_manager.hpp"
 
 
 class SDLObject: public Object {
