@@ -6,8 +6,9 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
+                "-std=c++20",
                 "-g",
-                "${file}",
+                // "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
 
@@ -21,7 +22,8 @@
 
                 "-I/opt/homebrew/Cellar/sdl2_ttf/2.20.2/include",
                 "-L/opt/homebrew/Cellar/sdl2_ttf/2.20.2/lib",
-                "-lSDL2_ttf"
+                "-lSDL2_ttf",
+                "*.cpp"
             ],
             "options": {
                 "cwd": "${fileDirname}"
