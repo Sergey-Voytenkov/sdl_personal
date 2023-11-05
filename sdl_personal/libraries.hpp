@@ -13,7 +13,7 @@
 #include <SDL2/SDL_ttf.h>
 
 // Customs
-#include "../vectors/vector2.hpp"
+#include "vector2.hpp"
 
 using namespace std;
 

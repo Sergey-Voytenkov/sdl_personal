@@ -2,7 +2,7 @@
 #define MAIN_HPP
 
 #include <iostream>
-#include "game/game.hpp"
+#include "game.hpp"
 
 using namespace std;
 

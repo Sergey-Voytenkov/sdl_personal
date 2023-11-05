@@ -1,6 +1,6 @@
 #ifndef INPUT_MANAGER_HPP
 #define INPUT_MANAGER_HPP
-#include "../other/libraries.hpp"
+#include "libraries.hpp"
 
 using namespace std;
 

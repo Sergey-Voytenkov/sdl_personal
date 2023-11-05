@@ -1,4 +1,5 @@
 #include "maze_room.hpp"
+
 void MazeRoom::update() {
     SDLObject::update();
 }

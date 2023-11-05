@@ -1,8 +1,8 @@
 #ifndef ROOM_INSTANCE_HPP
 #define ROOM_INSTANCE_HPP
-#include "../../other/libraries.hpp"
-#include "../virtual/sdl_object.hpp"
-#include "../../other/dirs_enum.hpp"
+#include "libraries.hpp"
+#include "sdl_object.hpp"
+#include "dirs_enum.hpp"
 #include <math.h>
 class MazeRoom: public SDLObject{
 public:

@@ -2,7 +2,7 @@
 #define PLAYER_HPP
 
 #include <iostream>
-#include "../../objects/maze_objects/maze_room.hpp"
+#include "maze_room.hpp"
 class Player {
 public:
     Player(MazeRoom*, string, string);

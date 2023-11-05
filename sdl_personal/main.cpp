@@ -9,6 +9,8 @@ int main(int argc, const char * argv[]) {
     if (!game) {
         cout << "Failed to initialize Game." << endl;
         return 1;
+    } else {
+        cout << "Game initialized" << endl;
     }
     
     if (!game->init(100, 100, 1200, 1000, "Window", false)) {

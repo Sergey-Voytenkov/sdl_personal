@@ -10,7 +10,7 @@
 //#include <algorithm>
 
 #include "SDL2/SDL_image.h"
-#include "../../objects/maze_objects/maze_room.hpp"
+#include "maze_room.hpp"
 class MazeBuilder {
 public:
     std::vector<MazeRoom*>* m_pRooms;

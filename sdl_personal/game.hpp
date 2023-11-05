@@ -1,12 +1,12 @@
 #ifndef GAME_HPP
 #define GAME_HPP
 
-#include "../texture_manager/texture_manager.hpp"
-#include "../other/libraries.hpp"
+#include "texture_manager.hpp"
+#include "libraries.hpp"
 
-#include "renderer/renderer.hpp"
-#include "../objects/virtual/object.hpp"
-#include "../maze/maze.hpp"
+#include "renderer.hpp"
+#include "object.hpp"
+#include "maze.hpp"
 //#include "ascii_art_object.hpp"
 
 
