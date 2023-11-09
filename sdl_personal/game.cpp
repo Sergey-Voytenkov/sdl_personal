@@ -23,13 +23,13 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
     }
     
     if (!Renderer::Instance()->init(posX, posY, width, height, identifier, fullscreen))
-        return false;
+    
     
     m_pWindow = Renderer::Instance()->getWindow();
     m_pRenderer = Renderer::Instance()->getRenderer();
     Renderer::Instance()->setScreenSizeReference(width, height);
 
-    SDL_SetRenderDrawColor(m_pRenderer, 0, 255, 0, 50); // RGBA
+    SDL_SetRenderDrawColor(m_pRenderer, 0, 255, 70, 50); // RGBA
 
     g_bRunning = true;
 //    m_pMaze = Maze::Instance();
@@ -54,7 +54,15 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
 
 /**Handles on input requests**/
 
-bool Game::handle_input() { return true; }
+bool Game::handle_input() {
+    SDL_Event event;
+    if (event.type == SDL_QUIT) {
+        stopRunning();
+
+        clean();
+    }
+    return true; 
+}
 
 /**Handles updating objects to new positions**/
 

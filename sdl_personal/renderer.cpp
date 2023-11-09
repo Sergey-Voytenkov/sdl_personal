@@ -9,7 +9,7 @@ Renderer * Renderer::Instance() {
 
 bool Renderer::init(int posX, int posY, int width, int height, const char * identifier, bool fullscreen) {
     
-    uint32_t flag = (fullscreen) ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
+    uint32_t flag = (fullscreen) ? SDL_WINDOW_FULLSCREEN : 0;
     m_pWindow = SDL_CreateWindow(identifier, posX, posY, width, height, flag);
     SDL_CreateWindow(identifier, posX, posY, width, height, flag);
     if (!m_pWindow) {

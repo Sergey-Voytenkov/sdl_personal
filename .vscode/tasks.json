@@ -12,8 +12,8 @@
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
 
-                "-I/opt/homebrew/Cellar/sdl2/2.28.4/include",
-                "-L/opt/homebrew/Cellar/sdl2/2.28.4/lib",
+                "-I/opt/homebrew/Cellar/sdl2/2.28.5/include",
+                "-L/opt/homebrew/Cellar/sdl2/2.28.5/lib",
                 "-lSDL2",
 
                 "-I/opt/homebrew/Cellar/sdl2_image/2.6.3_2/include",
