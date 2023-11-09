@@ -11,7 +11,6 @@ bool Renderer::init(int posX, int posY, int width, int height, const char * iden
     
     uint32_t flag = (fullscreen) ? SDL_WINDOW_FULLSCREEN : 0;
     m_pWindow = SDL_CreateWindow(identifier, posX, posY, width, height, flag);
-    SDL_CreateWindow(identifier, posX, posY, width, height, flag);
     if (!m_pWindow) {
         cout << "Failed to initialize SDL_Window. " << SDL_GetError() << endl;
         return false;
