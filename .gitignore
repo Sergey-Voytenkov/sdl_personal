@@ -4,3 +4,4 @@ sdl_personal/.DS_Store
 .DS_Store
 sdl_personal/input/.DS_Store
 build/
+.vs/
