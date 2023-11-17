@@ -48,7 +48,7 @@ private:
     Player * m_pPlayer;
     Maze * m_pMaze;
     
-    vector<Object*>* m_Objects;
+    vector<Object*> m_Objects;
     void clean();
  
 };
