@@ -6,35 +6,37 @@
 #include "player.hpp"
 #include "renderer.hpp"
 
-const char MAZE_MAP_FILE_NAME[] = "maze.txt";
+const char MAZE_MAP_FILE_NAME[] = "C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\maze.txt";
 const int MAZE_ROOM_PADDING = 100;
 const int roomWidth = 50;
 const int roomHeight = 50;
-const string roomTexIdentifier = "room";
-const string playerTexIdentifier = "player";
+const string roomTexIdentifier = "C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\room.png";
+const string playerTexIdentifier = "C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\player.png";
 
 class Maze {
 public:
     static Maze * Instance();
     void update(Dirs dir);
+    /**Builds the MazeRooms for first access**/
+    bool build();
     std::vector<MazeRoom*> * getMaze() { return m_pMazeBuilder->m_pRooms; }
     Player * getPlayer() { return m_pPlayer; }
-    
+    bool running() { return m_running; }
+
 private:
-    Maze() {
-        build();
-        
-        roomCount = m_pMazeBuilder->getRoomCount();
-        calculateInitialPositions(m_pMazeBuilder->m_pRooms);
-        m_pPlayer = new Player(getMaze()->at(0), roomTexIdentifier, playerTexIdentifier);
-        running = true;
+    Maze() { 
+        m_running = false; 
+        m_pRooms = {}; // does this work (?) lets see if its crashes lol
+        m_pMazeBuilder = nullptr;
+        m_pPlayer = nullptr;
+        sizeValuesProvided = false;
+        m_running = false;
     }
     ~Maze() {}
     
     static Maze * m_pInstance;
 
-    /**Builds the MazeRooms for first access**/
-    bool build();
+    
     
     bool recursiveCalc(int, int, MazeRoom*s);
     void calculateInitialPositions(std::vector<MazeRoom*>*);
@@ -46,7 +48,7 @@ private:
     Player * m_pPlayer;
     
     bool sizeValuesProvided;
-    bool running;
+    bool m_running;
     
 };
 

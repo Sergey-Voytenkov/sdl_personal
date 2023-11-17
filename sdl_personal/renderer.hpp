@@ -1,7 +1,7 @@
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
 
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include <string>
 #include <iostream>
 
@@ -21,6 +21,8 @@ private:
     Renderer() {
         m_pRenderer = nullptr;
         m_pWindow = nullptr;
+        m_width = NULL;
+        m_height = NULL;
     }
     ~Renderer() {}
     

@@ -28,16 +28,29 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
     m_pWindow = Renderer::Instance()->getWindow();
     m_pRenderer = Renderer::Instance()->getRenderer();
     Renderer::Instance()->setScreenSizeReference(width, height);
+    TextureManager::Instance()->setRenderer(m_pRenderer);
 
     SDL_SetRenderDrawColor(m_pRenderer, 0, 255, 70, 50); // RGBA
 
     g_bRunning = true;
-//    m_pMaze = Maze::Instance();
-//    m_pPlayer = m_pMaze->getPlayer();
+    m_pMaze = Maze::Instance();
+        if (!m_pMaze->build()) return false;
+    m_pPlayer = m_pMaze->getPlayer();
+
+
+
+
+
+    std::vector<MazeRoom*>* maze = m_pMaze->getMaze();
     
+    // Why does this not work?
+    // Isn't m_pMaze a instance of Object?
+    // What did I do wrong?
+    m_Objects = &maze; 
+
     
-    
-    
+
+
 //    TextureManager::Instance()->setRenderer(m_pRenderer);
 //    if (!TextureManager::Instance()->load_image_resize("../ascii_art/assets/image.jpeg", "ascii", width, height))
 //        return false;
@@ -56,29 +69,44 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
 
 bool Game::handle_input() {
     SDL_Event event;
-    if (event.type == SDL_QUIT) {
-        stopRunning();
+    while(SDL_PollEvent(&event))
+        if (event.type == SDL_QUIT) {
+            stopRunning();
 
-        clean();
-    }
+            clean();
+        }
     return true; 
 }
 
 /**Handles updating objects to new positions**/
 
-bool Game::update() { return true; }
+bool Game::update() {
+    std::vector<Object*>::iterator it;
+
+    for (it = m_Objects.begin(); it != m_Objects.end(); it++ ) {
+        (*it)->update();
+
+    }
+
+    return true;
+}
 
 /**Handles renderering to screen**/
 
 bool Game::render() {
     SDL_RenderClear(m_pRenderer);
+
+    std::vector<Object*>::iterator it;
+    for (it = m_Objects.begin(); it != m_Objects.end(); it++) {
+        (*it)->draw();
+    }
+
     SDL_RenderPresent(m_pRenderer);
     return true;
 }
 
 
 /**Cleanup process**/
-
 void Game::clean() {
     //TextureManager::destroy();
     

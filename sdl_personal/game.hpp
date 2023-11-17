@@ -13,6 +13,8 @@
 class Game {
 public:
     Game() {
+        m_pMaze = nullptr;
+        m_pPlayer = nullptr;
         m_pWindow = nullptr;
         m_pRenderer = nullptr;
         m_pInstance = nullptr;
@@ -46,7 +48,7 @@ private:
     Player * m_pPlayer;
     Maze * m_pMaze;
     
-    vector<Object*> m_Objects;
+    vector<Object*>* m_Objects;
     void clean();
  
 };

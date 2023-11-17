@@ -4,13 +4,25 @@
 
 using namespace std;
 
+bool MazeBuilder::buildRooms() {
+    m_roomCount = readRoomCount(m_mazeFileName);
+    if (m_roomCount < 0) {
+        std::cout << "Failed to read roomCount, or maze.txt does not exist!" << std::endl;
+        return false;
+    } 
+    else if (m_roomCount == 0) {
+        std::cout << "Failed to read rooms count, or maze.txt is blank!" << std::endl;
+        return false;
+    }
 
-MazeBuilder::MazeBuilder(const char * mazeFileName, int roomWidth, int roomHeight, string identifier) {
-    roomCount = readRoomCount(mazeFileName);
-    m_pRooms = buildRooms(mazeFileName, roomCount, roomWidth, roomHeight, identifier);
+    m_pRooms = buildRooms(m_mazeFileName, m_roomCount, m_roomWidth, m_roomHeight, m_textureIdentifier);
+    if (!m_pRooms) {
+        std::cout << "Failed to build rooms!" << std::endl;
+        return false;
+    }
+
+    return true;
 }
-
-
 std::vector<MazeRoom*>* MazeBuilder::buildRooms(const char * mazeFileName, int roomCount, int roomWidth, int roomHeight, string identifier) {
     // String is required for ifstream to function
     string mazeFileNameStr(mazeFileName);
@@ -76,13 +88,14 @@ int MazeBuilder::readRoomCount(const char *mazeFileName) {
     return roomCount;
 }
 
-void MazeBuilder::parseRoomData(MazeRoom* pRoom, char ** pSnippets) {
-    int ids[Dirs::sizeOfDirs] = {0};
+void MazeBuilder::parseRoomData(MazeRoom* pRoom, char ** ppSnippets) {
+    // +1 for roomID
+    int ids[Dirs::sizeOfDirs+1] = {0};
     
     // Calculates room IDs
     for (int i = 0; i < Dirs::sizeOfDirs+1; i++)
-        for (int j = 0; j < strlen(pSnippets[i]); j++)
-            ids[i] = (ids[i]*10) + (pSnippets[i][j]-48);
+        for (int j = 0; j < strlen(ppSnippets[i]); j++)
+            ids[i] = (ids[i]*10) + (ppSnippets[i][j]-48);
     
     // Sets room ID
     pRoom->setId(ids[0]);
@@ -95,36 +108,50 @@ void MazeBuilder::parseRoomData(MazeRoom* pRoom, char ** pSnippets) {
 };
 
 char ** MazeBuilder::split(char * data) {
-    char ** ppSnipets = (char**)malloc(sizeof(char*)*(Dirs::sizeOfDirs+1));
+    char ** ppSnippets = (char**)malloc(sizeof(char*)*(Dirs::sizeOfDirs+1)); 
+    
+    if (ppSnippets == NULL) return NULL;
     int i = 0;
     int s = 0;
+    int k = 0;
+
     while (s < Dirs::sizeOfDirs+1) {
-        while (i < strlen(data)) {
+        if (i < strlen(data)) {
             int j = i;
-            while (data[j] != ',' && data[j] != '\n') j++;
+            if (i != 0) i++;
+            while (data[j] != ',' && data[j] != '\n' && strlen(data) > j) j++;
             int size = j - i;
-            ppSnipets[s] = (char*)malloc(sizeof(char)*size+1);
+            ppSnippets[s] = (char*)malloc(sizeof(char)*size+1);
+            if (ppSnippets[s] == NULL) return NULL;
             
-            int k = 0;
-            while (i < j) ppSnipets[s][k++] = data[i++];
-            ppSnipets[s++][k] = 0;
-            i++;
+            k = 0;
+            while (i < j)
+                ppSnippets[s][k++] = data[i++];
+            
+            ppSnippets[s][k++] = 0;
+            i++; 
         }
+        s++;
     }
-    return ppSnipets;
+
+    for (int i = 0; i < Dirs::sizeOfDirs+1; i++)
+        for (int j = 0; j < strlen(ppSnippets[i]); j++)
+            std::cout << "DATA " << ppSnippets[i][j] << std::endl;
+    return ppSnippets;
 }
 
 void MazeBuilder::searchAndAssignDirections(std::vector<MazeRoom*>* pRooms, int roomId, int roomCount) {
     // Data[0] is roomId.
     int * data = pRooms->at(roomId)->getData();
     cout << "Room ID=" << pRooms->at(roomId)->getId() << " Data: ";
-    for (int i = 0; i < 4; i++) cout << data[i] << ',';
+    for (int i = 0; i < Dirs::sizeOfDirs; i++) cout << data[i] << ',';
     cout << endl;
 
-    pRooms->at(roomId)->setRoom(Dirs::north, findRoom(data[0], pRooms, roomCount));
-    pRooms->at(roomId)->setRoom(Dirs::south, findRoom(data[0], pRooms, roomCount));
-    pRooms->at(roomId)->setRoom(Dirs::east, findRoom(data[0], pRooms, roomCount));
-    pRooms->at(roomId)->setRoom(Dirs::west, findRoom(data[0], pRooms, roomCount));
+ 
+    pRooms->at(roomId)->setRoom(Dirs::north, findRoom(data[Dirs::north], pRooms, roomCount));
+    pRooms->at(roomId)->setRoom(Dirs::south, findRoom(data[Dirs::south], pRooms, roomCount));
+    pRooms->at(roomId)->setRoom(Dirs::east, findRoom(data[Dirs::east], pRooms, roomCount));
+    pRooms->at(roomId)->setRoom(Dirs::west, findRoom(data[Dirs::west], pRooms, roomCount));
     
     cout << " North: " << pRooms->at(roomId)->getRoom(Dirs::north);
     cout << " South: " << pRooms->at(roomId)->getRoom(Dirs::south);
@@ -135,11 +162,13 @@ void MazeBuilder::searchAndAssignDirections(std::vector<MazeRoom*>* pRooms, int 
 }
 
 MazeRoom* MazeBuilder::findRoom(int roomNum, std::vector<MazeRoom*>* pRooms, int roomCount) {
+    if (roomNum == 0) return nullptr;
+
     for (int i = 0; i < roomCount || i < pRooms->size(); ++i)
         if (pRooms->at(i)->getId() == roomNum)
             return pRooms->at(i);
     
-    return NULL;
+    return nullptr;
 };
 
 //void MazeBuilder::destroyRooms() {
@@ -149,28 +178,28 @@ MazeRoom* MazeBuilder::findRoom(int roomNum, std::vector<MazeRoom*>* pRooms, int
 void MazeBuilder::calculateNeighborCoordinates(MazeRoom* pRoom) {
     std::pair<int, int> tempCords;
     
-    if (pRoom->getRoom(Dirs::north) != nullptr && pRoom->getRoom(Dirs::north)->coordinates_calculated) {
+    if (pRoom->getRoom(Dirs::north) != nullptr && !pRoom->getRoom(Dirs::north)->coordinates_calculated) {
         tempCords= pRoom->getRoomCords();
         pRoom->getRoom(Dirs::north)->setRoomCords(tempCords.first, tempCords.second + 1);
         pRoom->getRoom(Dirs::north)->coordinates_calculated = true;
         calculateNeighborCoordinates(pRoom->getRoom(Dirs::north));
     }
     
-    if (pRoom->getRoom(Dirs::south) != nullptr && pRoom->getRoom(Dirs::south)->coordinates_calculated) {
+    if (pRoom->getRoom(Dirs::south) != nullptr && !pRoom->getRoom(Dirs::south)->coordinates_calculated) {
         tempCords = pRoom->getRoomCords();
         pRoom->getRoom(Dirs::south)->setRoomCords(tempCords.first, tempCords.second - 1);
         pRoom->getRoom(Dirs::south)->coordinates_calculated = true;
         calculateNeighborCoordinates(pRoom->getRoom(Dirs::south));
     }
         
-    if (pRoom->getRoom(Dirs::east) != nullptr && pRoom->getRoom(Dirs::east)->coordinates_calculated) {
+    if (pRoom->getRoom(Dirs::east) != nullptr && !pRoom->getRoom(Dirs::east)->coordinates_calculated) {
         tempCords = pRoom->getRoomCords();
         pRoom->getRoom(Dirs::east)->setRoomCords(tempCords.first + 1, tempCords.second);
         pRoom->getRoom(Dirs::east)->coordinates_calculated = true;
         calculateNeighborCoordinates(pRoom->getRoom(Dirs::east));
     }
     
-    if (pRoom->getRoom(Dirs::west) != nullptr && pRoom->getRoom(Dirs::west)->coordinates_calculated) {
+    if (pRoom->getRoom(Dirs::west) != nullptr && !pRoom->getRoom(Dirs::west)->coordinates_calculated) {
         tempCords = pRoom->getRoomCords();
         pRoom->getRoom(Dirs::west)->setRoomCords(tempCords.first + 1, tempCords.second);
         pRoom->getRoom(Dirs::west)->coordinates_calculated = true;

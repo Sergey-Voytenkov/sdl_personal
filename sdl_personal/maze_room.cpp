@@ -36,7 +36,7 @@ void MazeRoom::setRoom(Dirs dir, MazeRoom* room) {
             m_pEast = room;
             break;
         case Dirs::west:
-            m_pEast = room;
+            m_pWest = room;
             break;
             
         default:
@@ -90,6 +90,11 @@ void MazeRoom::updateAddToCords(float x, float y) {
 std::pair<float, float> MazeRoom::getCords() {
     return std::make_pair<float, float>(m_position.getX(),
                                         m_position.getY());
+}
+
+std::pair<int, int> MazeRoom::getDimensions()
+{
+    return std::pair<int, int>();
 }
 
 void MazeRoom::setDimensions(int width, int height) {

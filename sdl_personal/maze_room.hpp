@@ -7,14 +7,16 @@
 class MazeRoom: public SDLObject{
 public:
     /**Include LoaderParams along with the original X and Y position in the Rooms structure, and roomNumber**/
-    MazeRoom(const LoaderParams * params) : SDLObject(params) {}
-    ~MazeRoom() {
+    MazeRoom(const LoaderParams * params) : SDLObject(params) {
         m_id = 0;
         m_roomX = m_roomY = 0;
         m_pNorth = m_pSouth = m_pEast = m_pWest = nullptr;
         coordinates_calculated = false;
         initialPositionCalculated = false;
-    };
+        memset(m_data, 0, Dirs::sizeOfDirs); // Zero's array 
+
+    }
+    ~MazeRoom() {};
     
     /**Update the cords of the screen position in instance*/
     void draw();
@@ -49,7 +51,7 @@ public:
     
 private:
     int m_id;
-    int m_data[::sizeOfDirs];
+    int m_data[Dirs::sizeOfDirs];
     MazeRoom *m_pNorth, *m_pSouth, *m_pEast, *m_pWest;
     int m_roomX, m_roomY;
 };

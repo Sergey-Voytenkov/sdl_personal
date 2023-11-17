@@ -7,13 +7,17 @@ Maze * Maze::Instance() {
     return m_pInstance;
 }
 
+
 bool Maze::build() {
     m_pMazeBuilder = new MazeBuilder(MAZE_MAP_FILE_NAME, roomWidth, roomHeight, roomTexIdentifier);
-    
+
+    if (!m_pMazeBuilder->buildRooms()) return false;
+
     roomCount = m_pMazeBuilder->getRoomCount();
     
     calculateInitialPositions(m_pMazeBuilder->m_pRooms);
     
+    m_running = true;
     return true;
 }
 
@@ -55,22 +59,22 @@ void Maze::calculateInitialPositions(std::vector<MazeRoom*>* pRooms) {
 bool Maze::recursiveCalc(int curX, int curY, MazeRoom* pRoom) {
     pRoom->updateCords(curX, curY);
     
-    if (!pRoom->getRoom(Dirs::north)->initialPositionCalculated) {
+    if (pRoom->getRoom(Dirs::north) != nullptr && !pRoom->getRoom(Dirs::north)->initialPositionCalculated) {
         pRoom->initialPositionCalculated = true;
         recursiveCalc(curX, curY+MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::north));
     }
     
-    if (!pRoom->getRoom(Dirs::south)->initialPositionCalculated) {
+    if (pRoom->getRoom(Dirs::south) != nullptr && !pRoom->getRoom(Dirs::south)->initialPositionCalculated) {
         pRoom->initialPositionCalculated = true;
         recursiveCalc(curX, curY-MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::south));
     }
     
-    if (!pRoom->getRoom(Dirs::east)->initialPositionCalculated) {
+    if (pRoom->getRoom(Dirs::east) != nullptr && !pRoom->getRoom(Dirs::east)->initialPositionCalculated) {
         pRoom->initialPositionCalculated = true;
         recursiveCalc(curX+MAZE_ROOM_PADDING, curY, pRoom->getRoom(Dirs::east));
     }
     
-    if (!pRoom->getRoom(Dirs::west)->initialPositionCalculated) {
+    if (pRoom->getRoom(Dirs::west) != nullptr && !pRoom->getRoom(Dirs::west)->initialPositionCalculated) {
         pRoom->initialPositionCalculated = true;
         recursiveCalc(curX-MAZE_ROOM_PADDING, curY, pRoom->getRoom(Dirs::west));
     }

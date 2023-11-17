@@ -7,6 +7,8 @@ SDLObject::SDLObject(const LoaderParams * pParams) :
         m_width = pParams->getWidth();
         m_height = pParams->getHeight();
         m_identifier = pParams->getIdentifier();
+        m_x = 0;
+        m_y = 0;
 }
 
 void SDLObject::update() {

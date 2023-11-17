@@ -9,30 +9,43 @@
 #include <cstring>
 //#include <algorithm>
 
-#include "SDL2/SDL_image.h"
+#include "SDL_image.h"
 #include "maze_room.hpp"
 class MazeBuilder {
 public:
     std::vector<MazeRoom*>* m_pRooms;
-    int getRoomCount() { return roomCount; }
-    MazeBuilder(const char* mazeFileName, int roomWidth, int roomHeight, string textureIdentifier);
+    int getRoomCount() { return m_roomCount; }
+    MazeBuilder(const char* mazeFileName, int roomWidth, int roomHeight, string textureIdentifier) :
+        m_mazeFileName(mazeFileName), m_roomWidth(roomWidth), m_roomHeight(roomHeight), m_textureIdentifier(textureIdentifier) 
+    {
+        m_roomCount = 0;
+        m_pRooms = nullptr;
+    }
+
+    bool buildRooms();
     ~MazeBuilder();
 
 private:
+    const char* m_mazeFileName;
+    int m_roomWidth;
+    int m_roomHeight;
+    string m_textureIdentifier;
+
+
    /* void destroyRooms()*/;
     std::vector<MazeRoom*>* buildRooms(const char*, int, int, int, string);
     std::vector<MazeRoom*>* prebuildRooms(int, int, int, string);
-    int roomCount;
+    int m_roomCount;
     
     void parseRoomData(MazeRoom*, char**);
     char** split(char*);
     int readRoomCount(const char*);
-    void getDirections(char*, int*);
-    void searchAndAssignRoom(MazeRoom*, int);
+    //void getDirections(char*, int*);
+    //void searchAndAssignRoom(MazeRoom*, int);
     void searchAndAssignDirections(std::vector<MazeRoom*>*, int, int);
     void calculateNeighborCoordinates(MazeRoom*);
     MazeRoom* findRoom(int, std::vector<MazeRoom*>*, int);
-    
+
 };
 
 //#include "room.hpp"

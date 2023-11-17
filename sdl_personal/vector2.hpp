@@ -13,7 +13,7 @@ public:
     
     // copied
     
-    float length() { return sqrt(m_x * m_x + m_x + m_y); }
+    float length() { return (float)sqrt(m_x * m_x + m_x + m_y); }
 
     Vector2 operator+(const Vector2& v2);
     friend Vector2 & operator+=(Vector2& v1, const Vector2& v2);
