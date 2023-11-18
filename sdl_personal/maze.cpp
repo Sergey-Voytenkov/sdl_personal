@@ -42,8 +42,14 @@ void Maze::update(Dirs dir) {
 }
 
 void Maze::moveMaze(int moveX, int moveY) {
+    //Uses directly the m_pRooms from MazeBuilder because 
+    // function is located in the type. 
+
     for (int i = 0; i < m_pRooms.size() || i < roomCount; i++) {
-        m_pRooms[i]->updateAddToCords(moveX, moveY);
+        //m_pRooms[i]->updateAddToCords(moveX, moveY);
+        //m_pMazeBuilder->m_pRooms->at(i)->updateAddToCords(moveX, moveY);
+        ((MazeRoom*)(m_pRooms[i]))->updateAddToCords(moveX, moveY);
+        
     }
 }
 

@@ -7,11 +7,11 @@
 #include "renderer.hpp"
 
 const char MAZE_MAP_FILE_NAME[] = "C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\maze.txt";
-const int MAZE_ROOM_PADDING = 100;
-const int roomWidth = 50;
-const int roomHeight = 50;
-const string roomTexIdentifier = "C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\room.png";
-const string playerTexIdentifier = "C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\player.png";
+const int MAZE_ROOM_PADDING = 200;
+const int roomWidth = 100;
+const int roomHeight = 100;
+const string roomTexIdentifier = "room";
+const string playerTexIdentifier = "player";
 
 class Maze {
 public:
@@ -41,7 +41,7 @@ private:
     bool recursiveCalc(int, int, MazeRoom*s);
     void calculateInitialPositions(std::vector<MazeRoom*>*);
     void moveMaze(int, int);
-    std::vector<MazeRoom*> m_pRooms;
+    std::vector<SDLObject*> m_pRooms;
     
     int roomCount;
     MazeBuilder * m_pMazeBuilder;

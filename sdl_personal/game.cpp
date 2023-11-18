@@ -30,6 +30,9 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
     Renderer::Instance()->setScreenSizeReference(width, height);
     TextureManager::Instance()->setRenderer(m_pRenderer);
 
+    TextureManager::Instance()->load_image_resize("C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\room.png", "room", 100, 100);
+    TextureManager::Instance()->load_image_resize("C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\player.png", "player", 100, 100);
+
     SDL_SetRenderDrawColor(m_pRenderer, 0, 255, 70, 50); // RGBA
 
     g_bRunning = true;
@@ -42,12 +45,13 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
 
 
     std::vector<MazeRoom*>* maze = m_pMaze->getMaze();
-    
-    // Why does this not work?
-    // Isn't m_pMaze a instance of Object?
-    // What did I do wrong?
-    m_Objects = &maze; 
 
+    
+
+    std::vector<MazeRoom*>::iterator it;
+    for (it = maze->begin(); it != maze->end(); it++) {
+        m_Objects.push_back(*it);
+    }
     
 
 
