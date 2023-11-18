@@ -72,7 +72,6 @@ bool TextureManager::load_image_resize(string fileName, string identifier, int r
         return false;
     }
     m_textureMap[identifier] = pTexture;
-    m_textureMap[identifier] = pTexture;
     
     return true;
 }

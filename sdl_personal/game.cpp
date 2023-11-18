@@ -30,8 +30,8 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
     Renderer::Instance()->setScreenSizeReference(width, height);
     TextureManager::Instance()->setRenderer(m_pRenderer);
 
-    TextureManager::Instance()->load_image_resize("C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\room.png", "room", 100, 100);
-    TextureManager::Instance()->load_image_resize("C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\player.png", "player", 100, 100);
+    TextureManager::Instance()->load_image_resize("C:\\Users\\Desktop\\Projects\\CPP\\sdl_personal\\x64\\Debug\\room.png", "room", 50, 50);
+    TextureManager::Instance()->load_image_resize("C:\\Users\\Desktop\\Projects\\CPP\\sdl_personal\\x64\\Debug\\player.png", "player", 50, 50);
 
     SDL_SetRenderDrawColor(m_pRenderer, 0, 255, 70, 50); // RGBA
 
