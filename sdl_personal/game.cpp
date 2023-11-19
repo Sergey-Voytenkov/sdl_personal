@@ -95,12 +95,13 @@ bool Game::update() {
     return true;
 }
 
-/**Handles renderering to screen**/
+/**Handles renderering to screen**/ 
 
 bool Game::render() {
     SDL_RenderClear(m_pRenderer);
 
     std::vector<Object*>::iterator it;
+    m_pMaze->getMaze()->at(0)->updateIdentifier("player");
     for (it = m_Objects.begin(); it != m_Objects.end(); it++) {
         (*it)->draw();
     }

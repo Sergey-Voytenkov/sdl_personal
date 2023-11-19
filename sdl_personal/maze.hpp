@@ -6,7 +6,7 @@
 #include "player.hpp"
 #include "renderer.hpp"
 
-const char MAZE_MAP_FILE_NAME[] = "C:\\Users\\Desktop\\Projects\\sdl_personal\\x64\\Debug\\maze.txt";
+const char MAZE_MAP_FILE_NAME[] = "C:\\Users\\Desktop\\Projects\\CPP\\sdl_personal\\x64\\Debug\\maze.txt";
 const int MAZE_ROOM_PADDING = 200;
 const int roomWidth = 100;
 const int roomHeight = 100;
