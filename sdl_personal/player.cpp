@@ -6,6 +6,24 @@ Player::Player(MazeRoom* pRoom, string roomIdentifier, string playerIdentifier) 
     m_playerIdentfier = playerIdentifier;
 }
 
+void Player::checkAndOrMove() {
+    if (InputManager::Instance()->isKeyDown(directionCodes::codeUp))
+        if (!InputManager::Instance()->wasKeyUsed(directionCodes::codeUp))
+            move(Dirs::north);
+
+    if (InputManager::Instance()->isKeyDown(directionCodes::codeDown)) 
+        if (!InputManager::Instance()->wasKeyUsed(directionCodes::codeDown)) 
+                move(Dirs::south);
+            
+    if (InputManager::Instance()->isKeyDown(directionCodes::codeLeft))
+        if (!InputManager::Instance()->wasKeyUsed(directionCodes::codeLeft))
+            move(Dirs::west);
+
+    if (InputManager::Instance()->isKeyDown(directionCodes::codeRight))
+        if (!InputManager::Instance()->wasKeyUsed(directionCodes::codeRight))
+            move(Dirs::east);
+    
+}
 
 void Player::move(Dirs dir) {
     switch(dir) {

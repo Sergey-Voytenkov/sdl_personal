@@ -7,6 +7,7 @@
 #include "renderer.hpp"
 #include "object.hpp"
 #include "maze.hpp"
+#include "input_manager.hpp"
 //#include "ascii_art_object.hpp"
 
 

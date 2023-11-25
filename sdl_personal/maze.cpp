@@ -16,6 +16,8 @@ bool Maze::build() {
     roomCount = m_pMazeBuilder->getRoomCount();
     
     calculateInitialPositions(m_pMazeBuilder->m_pRooms);
+
+    m_pPlayer = new Player(m_pMazeBuilder->m_pRooms->at(0), roomTexIdentifier, playerTexIdentifier);
     
     m_running = true;
     return true;
@@ -67,12 +69,12 @@ bool Maze::recursiveCalc(int curX, int curY, MazeRoom* pRoom) {
     
     if (pRoom->getRoom(Dirs::north) != nullptr && !pRoom->getRoom(Dirs::north)->initialPositionCalculated) {
         pRoom->initialPositionCalculated = true;
-        recursiveCalc(curX, curY+MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::north));
+        recursiveCalc(curX, curY-MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::north));
     }
     
     if (pRoom->getRoom(Dirs::south) != nullptr && !pRoom->getRoom(Dirs::south)->initialPositionCalculated) {
         pRoom->initialPositionCalculated = true;
-        recursiveCalc(curX, curY-MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::south));
+        recursiveCalc(curX, curY+MAZE_ROOM_PADDING, pRoom->getRoom(Dirs::south));
     }
     
     if (pRoom->getRoom(Dirs::east) != nullptr && !pRoom->getRoom(Dirs::east)->initialPositionCalculated) {

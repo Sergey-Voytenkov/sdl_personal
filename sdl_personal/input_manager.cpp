@@ -35,12 +35,12 @@ void InputManager::onKeyUp(SDL_Event& event) {
     
     switch (event.button.button) {
         case codeUp:
-            m_buttonStates[up] = false;
-            m_keyUsed[up] = false;
+            m_buttonStates[upD] = false;
+            m_keyUsed[upD] = false;
             break;
         case codeDown:
-            m_buttonStates[down] = false;
-            m_keyUsed[down] = false;
+            m_buttonStates[downD] = false;
+            m_keyUsed[downD] = false;
             break;
         case codeLeft:
             m_buttonStates[leftD] = false;
@@ -56,9 +56,82 @@ void InputManager::onKeyUp(SDL_Event& event) {
 }
 
 void InputManager::onKeyDown(SDL_Event & event) {
+    switch (event.button.button) {
+    case codeUp:
+        m_buttonStates[upD] = true;
+        break;
+    case codeDown:
+        m_buttonStates[downD] = true;
+        break;
+    case codeLeft:
+        m_buttonStates[leftD] = true;
+        break;
+    case codeRight:
+        m_buttonStates[rightD] = true;
+        break;
+    default:
+        break;
+    }
     
 }
 
-bool InputManager::isKeyDown(SDL_Scancode key) {
-    return true;
+bool InputManager::isKeyDown(directionCodes key) {
+    return isKeyDown(key, 0);
+}
+
+bool InputManager::isKeyDown(directionCodes key, bool setGivenKeyDown) {
+    switch (key) {
+    case codeUp:
+        m_keyUsed[upD] = setGivenKeyDown ? true : m_keyUsed[upD];
+        return m_buttonStates[upD];
+    case codeDown:
+        m_keyUsed[downD] = setGivenKeyDown ? true : m_keyUsed[downD];
+        return m_buttonStates[downD];
+    case codeLeft:
+        m_keyUsed[leftD] = setGivenKeyDown ? true : m_keyUsed[leftD];
+        return m_buttonStates[leftD];
+    case codeRight:
+        m_keyUsed[rightD] = setGivenKeyDown ? true : m_keyUsed[rightD];
+        return m_buttonStates[rightD];
+    default:
+        return false;
+    }
+
+    return false;
+}
+
+bool InputManager::wasKeyUsed(directionCodes key) {
+    switch (key) {
+    case codeUp:
+        return m_keyUsed[upD];
+    case codeDown:
+        return m_keyUsed[downD];
+    case codeLeft:
+        return m_keyUsed[leftD];
+    case codeRight:
+        return m_keyUsed[rightD];
+    default:
+        return false;
+    }
+
+    return false;
+}
+
+void InputManager::setKeyUsed(directionCodes key) {
+    switch (key) {
+    case codeUp:
+        m_keyUsed[codeUp] = true;
+        break;
+    case codeDown:
+        m_keyUsed[codeDown] = true;
+        break;
+    case codeLeft:
+        m_keyUsed[codeLeft] = true;
+        break;
+    case codeRight:
+        m_keyUsed[codeRight] = true;
+        break;
+    default:
+        break;
+    }
 }

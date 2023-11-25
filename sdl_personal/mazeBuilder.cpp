@@ -134,9 +134,6 @@ char ** MazeBuilder::split(char * data) {
         s++;
     }
 
-    for (int i = 0; i < Dirs::sizeOfDirs+1; i++)
-        for (int j = 0; j < strlen(ppSnippets[i]); j++)
-            std::cout << "DATA " << ppSnippets[i][j] << std::endl;
     return ppSnippets;
 }
 
@@ -201,7 +198,7 @@ void MazeBuilder::calculateNeighborCoordinates(MazeRoom* pRoom) {
     
     if (pRoom->getRoom(Dirs::west) != nullptr && !pRoom->getRoom(Dirs::west)->coordinates_calculated) {
         tempCords = pRoom->getRoomCords();
-        pRoom->getRoom(Dirs::west)->setRoomCords(tempCords.first + 1, tempCords.second);
+        pRoom->getRoom(Dirs::west)->setRoomCords(tempCords.first - 1, tempCords.second);
         pRoom->getRoom(Dirs::west)->coordinates_calculated = true;
         calculateNeighborCoordinates(pRoom->getRoom(Dirs::west));
     }

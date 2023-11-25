@@ -31,6 +31,7 @@ private:
         m_pPlayer = nullptr;
         sizeValuesProvided = false;
         m_running = false;
+        roomCount = 0;
     }
     ~Maze() {}
     

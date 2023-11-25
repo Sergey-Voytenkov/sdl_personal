@@ -72,13 +72,11 @@ bool Game::init(int posX, int posY, int width, int height, const char * identifi
 /**Handles on input requests**/
 
 bool Game::handle_input() {
-    SDL_Event event;
-    while(SDL_PollEvent(&event))
-        if (event.type == SDL_QUIT) {
-            stopRunning();
+    if (!InputManager::Instance()->update()) {
+        stopRunning();
+        clean();
+    }    
 
-            clean();
-        }
     return true; 
 }
 
@@ -87,9 +85,10 @@ bool Game::handle_input() {
 bool Game::update() {
     std::vector<Object*>::iterator it;
 
+    m_pPlayer->checkAndOrMove();
+
     for (it = m_Objects.begin(); it != m_Objects.end(); it++ ) {
         (*it)->update();
-
     }
 
     return true;
@@ -101,7 +100,6 @@ bool Game::render() {
     SDL_RenderClear(m_pRenderer);
 
     std::vector<Object*>::iterator it;
-    m_pMaze->getMaze()->at(0)->updateIdentifier("player");
     for (it = m_Objects.begin(); it != m_Objects.end(); it++) {
         (*it)->draw();
     }
